@@ -100,11 +100,6 @@ class Porter
     w
   end
 
-
-  # make the stem_porter the default stem method, just in case we
-  # feel like having multiple stemmers available later.
-  #alias stem stem_porter
-
   private
 
   def self.step_one(target)
