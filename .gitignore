@@ -1,2 +1,4 @@
 *.swp
 .bundle
+.DS_Store
+doc/

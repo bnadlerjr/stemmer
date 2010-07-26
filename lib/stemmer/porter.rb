@@ -77,6 +77,8 @@ class Porter
   #   Porter, 1980, An algorithm for suffix stripping, Program, Vol. 14,
   #   no. 3, pp 130-137,
   #
+  # Original version by Ray Pereda.
+  #
   # See also http://www.tartarus.org/~martin/PorterStemmer
   def self.stem(word)
 
