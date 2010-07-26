@@ -172,8 +172,3 @@ module Stemmable
   alias stem stem_porter
 
 end
-
-# Add stem method to all Strings
-class String
-  include Stemmable
-end
