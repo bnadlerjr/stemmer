@@ -89,16 +89,7 @@ module Stemmable
     w[0] = 'Y' if w[0] == ?y
     
     w = step_one(w)
-
-    # Step 2
-    if w =~ SUFFIX_1_REGEXP
-      stem = $`
-      suffix = $1
-      # print "stem= " + stem + "\n" + "suffix=" + suffix + "\n"
-      if stem =~ MGR0
-        w = stem + STEP_2_LIST[suffix]
-      end
-    end
+    w = step_two(w)
 
     # Step 3
     if w =~ /(icate|ative|alize|iciti|ical|ful|ness)$/
@@ -163,10 +154,10 @@ module Stemmable
       stem = $`
       if stem =~ VOWEL_IN_STEM 
         target = stem
-	case target
-        when /(at|bl|iz)$/             then target << "e"
-        when /([^aeiouylsz])\1$/       then target.chop!
-        when /^#{CC}#{V}[^aeiouwxy]$/o then target << "e"
+	      case target
+          when /(at|bl|iz)$/             then target << "e"
+          when /([^aeiouylsz])\1$/       then target.chop!
+          when /^#{CC}#{V}[^aeiouwxy]$/o then target << "e"
         end
       end
     end
@@ -175,6 +166,18 @@ module Stemmable
     if target =~ /y$/ 
       stem = $`
       target = stem + "i" if stem =~ VOWEL_IN_STEM 
+    end
+
+    target
+  end
+
+  def step_two(target)
+    if target =~ SUFFIX_1_REGEXP
+      stem = $`
+      suffix = $1
+      if stem =~ MGR0
+        target = stem + STEP_2_LIST[suffix]
+      end
     end
 
     target
