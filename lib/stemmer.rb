@@ -5,7 +5,7 @@ module Stemmer
 
   # Stems a word. Uses the Porter stemming algorithm by default.
   # algorithm:: The name of the algorithm to use as a symbol. Right now only 
-  #             the +:porter+ algorithm is supported.
+  #             the <tt>:porter</tt> algorithm is supported.
   # downcase:: If true, the string will be downcased before being sent to the
   #            stemming algorithm. Default value is +false+.
   def stem(algorithm=:porter, downcase=false)

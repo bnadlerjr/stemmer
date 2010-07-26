@@ -1,4 +1,4 @@
-= Stem
+= Stemmer
 A Ruby based string stemming utility.
 
 == Author
