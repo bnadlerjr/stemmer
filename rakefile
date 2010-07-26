@@ -1,0 +1,35 @@
+$: << File.dirname(__FILE__)
+
+require 'rake'
+require 'rake/testtask'
+require 'rake/rdoctask'
+require 'rake/gempackagetask'
+require 'rcov/rcovtask'
+require 'lib/stem'
+
+gemspec = eval(File.read('stem.gemspec'))
+
+Rake::TestTask.new do |t|
+  t.test_files = TEST_FILES
+end
+
+Rake::RDocTask.new do |t|
+  t.main = MAIN_RDOC
+  t.rdoc_dir = 'doc'
+  t.rdoc_files.include(EXTRA_RDOC_FILES, 'lib/**/*.rb')
+  t.options << '-q'
+  t.title = TITLE
+end
+
+Rcov::RcovTask.new do |t|
+  t.test_files = TEST_FILES
+  t.output_dir = 'doc/coverage'
+  t.rcov_opts << '-x /Library/Ruby'
+end
+
+task :default => ['test']
+
+Rake::GemPackageTask.new(gemspec) do |pkg|
+  pkg.need_zip = true
+  pkg.need_tar = true
+end
