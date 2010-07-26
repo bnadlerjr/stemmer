@@ -92,19 +92,7 @@ module Stemmable
     w = step_two(w)
     w = step_three(w)
     w = step_four(w)
-
-    #  Step 5
-    if w =~ /e$/ 
-      stem = $`
-      if (stem =~ MGR1) ||
-          (stem =~ MEQ1 && stem !~ /^#{CC}#{V}[^aeiouwxy]$/o)
-        w = stem
-      end
-    end
-
-    if w =~ /ll$/ && w =~ MGR1
-      w.chop!
-    end
+    w = step_five(w)
 
     # and turn initial Y back to y
     w[0] = 'y' if w[0] == ?Y
@@ -186,6 +174,22 @@ module Stemmable
       if stem =~ MGR1
         target = stem
       end
+    end
+
+    target
+  end
+
+  def step_five(target)
+    if target =~ /e$/ 
+      stem = $`
+      if (stem =~ MGR1) ||
+          (stem =~ MEQ1 && stem !~ /^#{CC}#{V}[^aeiouwxy]$/o)
+        target = stem
+      end
+    end
+
+    if target =~ /ll$/ && target =~ MGR1
+      target.chop!
     end
 
     target
