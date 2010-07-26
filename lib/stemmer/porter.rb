@@ -90,15 +90,7 @@ module Stemmable
     
     w = step_one(w)
     w = step_two(w)
-
-    # Step 3
-    if w =~ /(icate|ative|alize|iciti|ical|ful|ness)$/
-      stem = $`
-      suffix = $1
-      if stem =~ MGR0
-        w = stem + STEP_3_LIST[suffix]
-      end
-    end
+    w = step_three(w)
 
     # Step 4
     if w =~ SUFFIX_2_REGEXP
@@ -177,6 +169,18 @@ module Stemmable
       suffix = $1
       if stem =~ MGR0
         target = stem + STEP_2_LIST[suffix]
+      end
+    end
+
+    target
+  end
+
+  def step_three(target)
+    if target =~ /(icate|ative|alize|iciti|ical|ful|ness)$/
+      stem = $`
+      suffix = $1
+      if stem =~ MGR0
+        target = stem + STEP_3_LIST[suffix]
       end
     end
 
