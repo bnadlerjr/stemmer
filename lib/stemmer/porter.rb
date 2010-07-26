@@ -91,19 +91,7 @@ module Stemmable
     w = step_one(w)
     w = step_two(w)
     w = step_three(w)
-
-    # Step 4
-    if w =~ SUFFIX_2_REGEXP
-      stem = $`
-      if stem =~ MGR1
-        w = stem
-      end
-    elsif w =~ /(s|t)(ion)$/
-      stem = $` + $1
-      if stem =~ MGR1
-        w = stem
-      end
-    end
+    w = step_four(w)
 
     #  Step 5
     if w =~ /e$/ 
@@ -181,6 +169,22 @@ module Stemmable
       suffix = $1
       if stem =~ MGR0
         target = stem + STEP_3_LIST[suffix]
+      end
+    end
+
+    target
+  end
+
+  def step_four(target)
+    if target =~ SUFFIX_2_REGEXP
+      stem = $`
+      if stem =~ MGR1
+        target = stem
+      end
+    elsif target =~ /(s|t)(ion)$/
+      stem = $` + $1
+      if stem =~ MGR1
+        target = stem
       end
     end
 
