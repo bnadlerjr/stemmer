@@ -1,4 +1,4 @@
-module Stemmable
+class Porter
 
   STEP_2_LIST = {
     'ational'=>'ate', 'tional'=>'tion', 'enci'=>'ence', 'anci'=>'ance',
@@ -78,10 +78,10 @@ module Stemmable
   #   no. 3, pp 130-137,
   #
   # See also http://www.tartarus.org/~martin/PorterStemmer
-  def stem_porter
+  def stem(word)
 
     # make a copy of the given object and convert it to a string.
-    w = self.dup.to_str
+    w = word.dup.to_str
     
     return w if w.length < 3
     
@@ -103,7 +103,7 @@ module Stemmable
 
   # make the stem_porter the default stem method, just in case we
   # feel like having multiple stemmers available later.
-  alias stem stem_porter
+  #alias stem stem_porter
 
   private
 
