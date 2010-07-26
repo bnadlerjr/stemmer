@@ -1,7 +1,7 @@
 require 'lib/stemmer/porter'
 
 module Stemmer
-  VERSION = '1.0.1'
+  VERSION = '0.1.0'
 
   # Stems a word. Uses the Porter stemming algorithm by default.
   # algorithm:: The name of the algorithm to use as a symbol. Right now only 
