@@ -1,1 +1,1 @@
-require 'stemmer/porter'
+require 'lib/stemmer/porter'

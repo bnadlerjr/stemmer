@@ -5,9 +5,9 @@ require 'rake/testtask'
 require 'rake/rdoctask'
 require 'rake/gempackagetask'
 require 'rcov/rcovtask'
-require 'lib/stem'
+require 'lib/stemmer'
 
-gemspec = eval(File.read('stem.gemspec'))
+gemspec = eval(File.read('stemmer.gemspec'))
 
 Rake::TestTask.new do |t|
   t.test_files = TEST_FILES
