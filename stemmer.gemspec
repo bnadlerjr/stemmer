@@ -18,7 +18,7 @@ Gem::Specification.new do |spec|
   spec.name                  = 'stemmer'
   spec.required_ruby_version = '>=1.8.7'
   spec.test_files            = TEST_FILES
-  spec.version               = '0.1.0' #Stemmer::VERSION
+  spec.version               = Stemmer::VERSION
   spec.rubyforge_project     = 'stemmer' # required for validation
 
   spec.summary = <<-SUMMARY

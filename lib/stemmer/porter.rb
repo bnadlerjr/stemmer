@@ -88,32 +88,7 @@ module Stemmable
     # now map initial y to Y so that the patterns never treat it as vowel
     w[0] = 'Y' if w[0] == ?y
     
-    # Step 1a
-    if w =~ /(ss|i)es$/
-      w = $` + $1
-    elsif w =~ /([^s])s$/ 
-      w = $` + $1
-    end
-
-    # Step 1b
-    if w =~ /eed$/
-      w.chop! if $` =~ MGR0 
-    elsif w =~ /(ed|ing)$/
-      stem = $`
-      if stem =~ VOWEL_IN_STEM 
-        w = stem
-	case w
-        when /(at|bl|iz)$/             then w << "e"
-        when /([^aeiouylsz])\1$/       then w.chop!
-        when /^#{CC}#{V}[^aeiouwxy]$/o then w << "e"
-        end
-      end
-    end
-
-    if w =~ /y$/ 
-      stem = $`
-      w = stem + "i" if stem =~ VOWEL_IN_STEM 
-    end
+    w = step_one(w)
 
     # Step 2
     if w =~ SUFFIX_1_REGEXP
@@ -171,4 +146,37 @@ module Stemmable
   # feel like having multiple stemmers available later.
   alias stem stem_porter
 
+  private
+
+  def step_one(target)
+    # Step 1a
+    if target =~ /(ss|i)es$/
+      target = $` + $1
+    elsif target =~ /([^s])s$/ 
+      target = $` + $1
+    end
+
+    # Step 1b
+    if target =~ /eed$/
+      target.chop! if $` =~ MGR0 
+    elsif target =~ /(ed|ing)$/
+      stem = $`
+      if stem =~ VOWEL_IN_STEM 
+        target = stem
+	case target
+        when /(at|bl|iz)$/             then target << "e"
+        when /([^aeiouylsz])\1$/       then target.chop!
+        when /^#{CC}#{V}[^aeiouwxy]$/o then target << "e"
+        end
+      end
+    end
+
+    # Step 1c
+    if target =~ /y$/ 
+      stem = $`
+      target = stem + "i" if stem =~ VOWEL_IN_STEM 
+    end
+
+    target
+  end
 end
