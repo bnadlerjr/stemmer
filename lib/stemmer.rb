@@ -4,7 +4,7 @@ module Stemmer
   VERSION = '1.0.1'
 
   def stem(algorithm=:porter, downcase=false)
-    Porter.new.stem(self)
+    Porter.stem(self)
   end
 end
 

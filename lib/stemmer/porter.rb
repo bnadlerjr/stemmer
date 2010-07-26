@@ -78,7 +78,7 @@ class Porter
   #   no. 3, pp 130-137,
   #
   # See also http://www.tartarus.org/~martin/PorterStemmer
-  def stem(word)
+  def self.stem(word)
 
     # make a copy of the given object and convert it to a string.
     w = word.dup.to_str
@@ -107,7 +107,7 @@ class Porter
 
   private
 
-  def step_one(target)
+  def self.step_one(target)
     # Step 1a
     if target =~ /(ss|i)es$/
       target = $` + $1
@@ -139,7 +139,7 @@ class Porter
     target
   end
 
-  def step_two(target)
+  def self.step_two(target)
     if target =~ SUFFIX_1_REGEXP
       stem = $`
       suffix = $1
@@ -151,7 +151,7 @@ class Porter
     target
   end
 
-  def step_three(target)
+  def self.step_three(target)
     if target =~ /(icate|ative|alize|iciti|ical|ful|ness)$/
       stem = $`
       suffix = $1
@@ -163,7 +163,7 @@ class Porter
     target
   end
 
-  def step_four(target)
+  def self.step_four(target)
     if target =~ SUFFIX_2_REGEXP
       stem = $`
       if stem =~ MGR1
@@ -179,7 +179,7 @@ class Porter
     target
   end
 
-  def step_five(target)
+  def self.step_five(target)
     if target =~ /e$/ 
       stem = $`
       if (stem =~ MGR1) ||
