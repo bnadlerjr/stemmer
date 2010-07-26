@@ -1,27 +1,35 @@
 = Stem
-A Ruby based version of the Porter Stem algorithm.
+A Ruby based string stemming utility.
 
 == Author
 Bob Nadler, Jr. 
 Website:: http://bobnadler.com
 Email:: thethirdswitch [at] gmail [dot] com
-Docs:: http://rdoc.info/projects/bnadlerjr/stem
+Docs:: http://rdoc.info/projects/bnadlerjr/stemmer
 
 == Installation
 === Git
-<tt>git clone [http://bnadlerjr.github.com/stem]</tt>
+<tt>git clone [http://bnadlerjr.github.com/stemmer]</tt>
 
 === Gem
-<tt>sudo gem install stem</tt>
+<tt>gem install stemmer</tt>
 
 == Description
+Stemming is the process for reducing inflected (or sometimes derived) words to their stem, base or root form – generally a written word form. The stem need not be identical to the morphological root of the word; it is usually sufficient that related words map to the same stem, even if this stem is not in itself a valid root. The algorithm has been a long-standing problem in computer science; the first paper on the subject was published in 1968. The process of stemming, often called conflation, is useful in search engines for query expansion or indexing and other natural language processing problems. -- Wikipedia[http://en.wikipedia.org/wiki/Stemming]
+
+This gem mixes in a +stem+ method to the String class allowing you to get the stem of a string.
 
 === Usage
+<tt>require 'stemmer'</tt>
+
+<tt>'plastered'.stem => 'plaster'</tt>
+
+Right now the only algorithm supported is the Porter stemming algorithm. See Stemmer for details.
 
 == Contributing
 
 === Issues / Roadmap
-Use Github issues[http://github.com/bnadlerjr/stem/issues] for reporting bug and feature requests. 
+Use Github issues[http://github.com/bnadlerjr/stemmer/issues] for reporting bug and feature requests. 
 
 === Patches / Pull Requests
 1. Fork the project.
