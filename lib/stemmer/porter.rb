@@ -1,10 +1,3 @@
-#! /local/ruby/bin/ruby
-#
-# $Id: stemmable.rb,v 1.2 2003/02/01 02:07:30 condit Exp $
-#
-# See example usage at the end of this file.
-#
-
 module Stemmable
 
   STEP_2_LIST = {
@@ -21,7 +14,6 @@ module Stemmable
     'icate'=>'ic', 'ative'=>'', 'alize'=>'al', 'iciti'=>'ic',
     'ical'=>'ic', 'ful'=>'', 'ness'=>''
   }
-
 
   SUFFIX_1_REGEXP = /(
                     ational  |
@@ -46,7 +38,6 @@ module Stemmable
                     biliti   |
                     logi)$/x
 
-
   SUFFIX_2_REGEXP = /(
                       al       |
                       ance     |
@@ -67,7 +58,6 @@ module Stemmable
                       ive      |
                       ize)$/x
 
-
   C = "[^aeiou]"         # consonant
   V = "[aeiouy]"         # vowel
   CC = "#{C}(?>[^aeiouy]*)"  # consonant sequence
@@ -78,7 +68,6 @@ module Stemmable
   MGR1 = /^(#{CC})?#{VV}#{CC}#{VV}#{CC}/o      # [cc]vvccvvcc... is m>1
   VOWEL_IN_STEM   = /^(#{CC})?#{V}/o                      # vowel in stem
 
-  #
   # Porter stemmer in Ruby.
   #
   # This is the Porter stemming algorithm, ported to Ruby from the
@@ -89,10 +78,6 @@ module Stemmable
   #   no. 3, pp 130-137,
   #
   # See also http://www.tartarus.org/~martin/PorterStemmer
-  #
-  # Send comments to raypereda@hotmail.com
-  #
-  
   def stem_porter
 
     # make a copy of the given object and convert it to a string.
@@ -182,10 +167,8 @@ module Stemmable
   end
 
 
-  #
   # make the stem_porter the default stem method, just in case we
   # feel like having multiple stemmers available later.
-  #
   alias stem stem_porter
 
 end
