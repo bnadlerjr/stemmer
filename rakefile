@@ -24,7 +24,7 @@ end
 Rcov::RcovTask.new do |t|
   t.test_files = TEST_FILES
   t.output_dir = 'doc/coverage'
-  t.rcov_opts << '-x /Library/Ruby'
+  t.rcov_opts << '-x gems'
 end
 
 task :default => ['test']
