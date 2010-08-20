@@ -1,4 +1,5 @@
-require 'lib/stemmer/porter'
+$: << File.join(File.dirname(__FILE__), 'stemmer')
+require 'porter'
 
 module Stemmer
   VERSION = '0.1.0'
